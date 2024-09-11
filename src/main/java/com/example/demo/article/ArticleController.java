@@ -30,7 +30,7 @@ public class ArticleController {
     public String articleCreate(@RequestParam(value = "title") String title,
                                 @RequestParam(value = "content") String content){
         this.articleService.create(title, content);
-        return "redirect:/";
+        return "redirect:/article/list";
     }
 
     @GetMapping("/detail/{id}")

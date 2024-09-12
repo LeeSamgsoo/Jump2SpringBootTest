@@ -11,7 +11,7 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-public class User {
+public class SiteUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -21,7 +21,8 @@ public class User {
 
     private String password;
 
-    private LocalDateTime createDate;
+    @Column(unique = true)
+    private String email;
 
     @OneToMany(mappedBy = "writer", cascade = CascadeType.REMOVE)
     private List<Article> articles;

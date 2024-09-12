@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html layout:decorate="~{layout}">
 <div class="container my-3" layout:fragment="content">
-<form th:action="@{/article/create}" method="post">
-    <div class="mb-3">
-        <label for="title" class="form-label">제목</label>
-        <input type="text" class="form-control" id="title" name="title">
-    </div>
-    <div class="mb-3">
-        <label for="content" class="form-label">내용</label>
-        <textarea class="form-control" id="content" name="content" rows="10"></textarea>
-    </div>
-    <button class="btn btn-primary" type="submit">등록하기</button>
-</form>
+    <form th:action="@{/article/create}" method="post" th:object="${articleForm}">
+        <div class="alert alert-danger" role="alert" th:if="${#fields.hasAnyErrors()}">
+            <div th:each="err : ${#fields.allErrors()}" th:text="${err}"></div>
+        </div>
+        <div class="mb-3">
+            <label for="title" class="form-label">제목</label>
+            <input type="text" class="form-control" th:field="*{title}">
+        </div>
+        <div class="mb-3">
+            <label for="content" class="form-label">내용</label>
+            <textarea class="form-control" th:field="*{content}" rows="10"></textarea>
+        </div>
+        <button class="btn btn-primary" type="submit">등록하기</button>
+    </form>
 </div>
 </html>

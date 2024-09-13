@@ -26,11 +26,12 @@ public class ArticleService {
         return this.articleRepository.findAll(pageable);
     }
 
-    public void create(String title, String content) {
+    public void create(String title, String content, SiteUser user) {
         Article article = new Article();
         article.setTitle(title);
         article.setContent(content);
         article.setCreateDate(LocalDateTime.now());
+        article.setWriter(user);
         articleRepository.save(article);
     }
 

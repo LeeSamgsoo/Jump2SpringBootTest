@@ -35,6 +35,7 @@
             </li>
         </ul>
     </div>
-    <a class="btn btn-primary" th:href="@{/article/create}">게시글 등록하기</a>
+    <a class="btn btn-primary" th:href="@{/article/create}" sec:authorize="isAuthenticated()">게시글 등록하기</a>
+    <a class="btn btn-primary" th:href="@{/user/login}" sec:authorize="isAnonymous()">게시글 등록하기</a>
 </div>
 </html>

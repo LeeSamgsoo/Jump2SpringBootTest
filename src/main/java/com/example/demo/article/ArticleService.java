@@ -1,5 +1,6 @@
 package com.example.demo.article;
 
+import com.example.demo.user.SiteUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

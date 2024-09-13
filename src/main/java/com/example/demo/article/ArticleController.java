@@ -73,7 +73,7 @@ public class ArticleController {
         }
         SiteUser user = this.userService.getUser(principal.getName());
         Article article = this.articleService.getArticle(id);
-        if (user == null) {
+        if (user == null || !user.getUsername().equals(principal.getName())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "수정 권한이 없습니다.");
         }
         if (article == null) {
@@ -81,6 +81,21 @@ public class ArticleController {
         }
         this.articleService.modify(article, articleForm.getTitle(), articleForm.getContent());
         return "redirect:/article/detail/" + id;
+    }
+
+    @PreAuthorize("isAuthenticated")
+    @GetMapping("/delete/{id}")
+    public String articleDelete(@PathVariable(value = "id") Integer id, Principal principal) {
+        SiteUser user = this.userService.getUser(principal.getName());
+        Article article = this.articleService.getArticle(id);
+        if (user == null || !user.getUsername().equals(principal.getName())) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "삭제 권한이 없습니다.");
+        }
+        if (article == null) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "삭제 권한이 없습니다.");
+        }
+        this.articleService.delete(article);
+        return "redirect:/article/list";
     }
 
 }

@@ -2,7 +2,6 @@ package com.example.demo.article;
 
 import com.example.demo.user.SiteUser;
 import lombok.RequiredArgsConstructor;
-import org.checkerframework.checker.units.qual.A;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -46,4 +45,9 @@ public class ArticleService {
         article.setModifyDate(LocalDateTime.now());
         this.articleRepository.save(article);
     }
+
+    public void delete(Article article) {
+        this.articleRepository.delete(article);
+    }
+
 }

@@ -25,4 +25,6 @@ public class Article {
 
     @ManyToOne
     private SiteUser writer;
+
+    private LocalDateTime modifyDate;
 }

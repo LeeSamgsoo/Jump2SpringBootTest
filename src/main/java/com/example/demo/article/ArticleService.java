@@ -39,4 +39,11 @@ public class ArticleService {
         Optional<Article> optionalArticle = this.articleRepository.findById(id);
         return optionalArticle.orElse(null);
     }
+
+    public void modify(Article article, String title, String content) {
+        article.setTitle(title);
+        article.setContent(content);
+        article.setModifyDate(LocalDateTime.now());
+        this.articleRepository.save(article);
+    }
 }
